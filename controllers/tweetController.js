@@ -11,6 +11,8 @@ const tweetController = {
       let { description } = req.body
       const UserId = helpers.getUser(req).id
 
+      console.log(req)
+
       if (!description) {
         return res.json({
           status: 'error',
