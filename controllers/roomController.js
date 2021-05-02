@@ -280,7 +280,8 @@ const roomController = {
         raw: true,
         nest: true,
         where: { otherUserId: helpers.getUser(req).id },
-        include: [User, Tweet, Reply]
+        include: [User, Tweet, Reply],
+        order: [['createdAt', 'DESC']]
       })
       // console.log(notifications)
 
@@ -289,7 +290,7 @@ const roomController = {
       }
 
       notifications = notifications.map(el => ({
-        userId: el.userId,
+        userId: el.UserId,
         name: el.User.name,
         avatar: el.User.avatar,
         tweetId: el.Tweet.id,
