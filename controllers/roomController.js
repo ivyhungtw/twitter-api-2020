@@ -83,42 +83,6 @@ const roomController = {
     }
   },
 
-  sendMessage: async (req, res, next) => {
-    try {
-      // Message can not be empty
-      if (!req.body.message.trim()) {
-        return res.status(422).json({
-          status: 'error',
-          message: 'Message is empty.'
-        })
-      }
-
-      const message = await Message.create({
-        UserId: helpers.getUser(req).id,
-        ChatRoomId: req.params.roomId,
-        message: req.body.message
-      })
-
-      if (!message) {
-        return res.status(500).json({
-          status: 'error',
-          message: 'Database error.'
-        })
-      }
-
-      global.io.sockets
-        .in(req.params.roomId)
-        .emit('chat message', generateMessage(message.message))
-
-      res.status(200).json({
-        status: 'success',
-        message
-      })
-    } catch (error) {
-      next(error)
-    }
-  },
-  // 要抓取還沒跟這個人聊過天的 的名單
   getAvailableUsers: async (req, res, next) => {
     try {
       // 因為沒有改變資料結構，一個聊天室有兩筆資料(user A && user B)，因此撈資料都需要在同一 table 撈兩次來過濾
