@@ -3,26 +3,11 @@ module.exports = (sequelize, DataTypes) => {
   const Notification = sequelize.define(
     'Notification',
     {
-      UserId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
-      receiverId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
-      TweetId: {
-        type: DataTypes.INTEGER,
-        allowNull: true
-      },
-      ReplyId: {
-        type: DataTypes.INTEGER,
-        allowNull: true
-      },
-      type: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      }
+      UserId: DataTypes.INTEGER,
+      otherUserId: DataTypes.INTEGER,
+      TweetId: DataTypes.INTEGER,
+      ReplyId: DataTypes.INTEGER,
+      type: DataTypes.INTEGER
     },
     {}
   )

@@ -8,14 +8,8 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      followerId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
-      followingId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      }
+      followerId: DataTypes.INTEGER,
+      followingId: DataTypes.INTEGER
     },
     {}
   )
